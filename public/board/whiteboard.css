@@ -1,0 +1,35 @@
+.white_board_body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #8d8d8d;
+}
+
+.white_board_canvas {
+    display: block;
+    background-color: #fff;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px; /* Rounded corners */
+}
+
+.white_board_toolbar {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.white_board_toolbar button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.white_board_toolbar button.active {
+    background-color: #999;
+}

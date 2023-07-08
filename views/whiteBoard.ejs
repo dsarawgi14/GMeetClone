@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet App | WhiteBoard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js"
+        integrity="sha512-Z6C1p1NIexPj5MsVUunW4pg7uMX6/TT3CUVldmjXx2kpip1eZcrAnxIusDxyFIikyM9A61zOVNgvLr/TGudOQg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="whiteboard.css">
+    <script type="text/javascript" src="whiteboard.js" defer></script>
+</head>
+
+<body class="white_board_body">
+    <div class="white_board_toolbar">
+        <button id="pencilButton" class="active">Pencil</button>
+        <button id="eraserButton">Eraser</button>
+        <button id="clearButton">Clear</button>
+    </div>
+    <canvas id="canvas" class="white_board_canvas"></canvas>
+</body>
+
+</html>
