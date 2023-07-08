@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const session=require('express-session')
@@ -20,30 +21,70 @@ app.use('/peerjs', peerServer);
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
+app.use(session({
+  resave: false,
+  saveUninitialized: true,
+  secret: 'SECRET' 
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/error', (req, res) => res.send("error logging in"));
+
+require('./passport-setup');
+
+ 
+app.get('/auth/google', 
+  passport.authenticate('google', { scope : ['profile', 'email'] }));
+ 
+app.get('/google/callback', 
+  passport.authenticate('google', { successRedirect: '/', failureRedirect: '/error' }));
+
+function isAuthenticated(req, res, next) {
+  // console.log('isAuthenticated');
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  // User is not authenticated, redirect to login page
+  // res.render('index.ejs', { user: false });
+  res.redirect('/');
+}
+
+
 app.get('/', (req, res) => {
-    res.render('home');
+  if (req.isAuthenticated()) {
+    res.render('index', {user: req.user});
+  } else {
+    res.render('index.ejs', { user: false });
+  }
 })
 
-app.get('/room', (req,res) => {
-    res.redirect(`/room/${uuidV4()}`)
-  })
-  
-  app.get('/board/:room', (_, res) => {
-    res.render('whiteBoard')
-  })
-  
+app.get('/room', isAuthenticated, (req,res) => {
+  res.redirect(`/room/${uuidV4()}`)
+})
+
+app.get('/board/:room', isAuthenticated, (req, res) => {
+  res.render('whiteBoard', {user: req.user})
+})
+
 //   app.get('/logout', (req, res) => {
 //     res.render('logout')
 //   })
-  app.get('/room/:room', (req, res) => {
-    res.render('room', { roomId: req.params.room })
-  })
+app.get('/room/:room', isAuthenticated, (req, res) => {
+  res.render('room', { roomId: req.params.room, user: req.user })
+})
 
-  app.get('/left/:room', (req, res) => {
-    res.render('logout', { roomId: req.params.room })
-  })
+app.get('/left/:room', isAuthenticated, (req, res) => {
+  res.render('logout', { roomId: req.params.room, user: req.user })
+})
 
-  let connections = [];
+app.get('*', (req, res) => {
+  res.send('<h1>404 not found <h1>');
+})
+
+let connections = [];
 
 io.on('connect', socket => {
   connections.push(socket)
@@ -106,6 +147,7 @@ io.on('connect', socket => {
     connections = connections.filter((con) => con.id !== socket.id)
   })
 })
+
 
 server.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);

@@ -6,7 +6,8 @@ const myPeer = new Peer(undefined, {
   host: '/',
   port: '5500'
 })
-let namee = prompt("Enter your name");
+console.log(toString(user));
+let namee = USER_NAME;
 let myVideoStream;
 // trying to close the window
 let boardWindow;
