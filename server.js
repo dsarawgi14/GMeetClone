@@ -39,6 +39,10 @@ app.get('/room', (req,res) => {
     res.render('room', { roomId: req.params.room })
   })
 
+  app.get('/left/:room', (req, res) => {
+    res.render('logout', { roomId: req.params.room })
+  })
+
   let connections = [];
 
 io.on('connect', socket => {

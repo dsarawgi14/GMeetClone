@@ -140,7 +140,7 @@ function leave () {
   if (boardWindow && !boardWindow.closed) {
     boardWindow.close();
   }
-  window.location.href = '/';
+  window.location.href = '/left/' + ROOM_ID;
   //socket.emit('closeBoard')
   
 }

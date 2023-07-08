@@ -8,5 +8,11 @@
 </head>
 <body>
     <h1>You left the meeting</h1>
+    <form action="/">
+        <button type="submit">Get back to home</button>
+    </form>
+    <form action="/room/<%= roomId %>">
+        <button type="submit">Get back in meeting</button>
+    </form>
 </body>
 </html>
