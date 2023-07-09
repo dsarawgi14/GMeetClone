@@ -69,9 +69,15 @@ app.get('/board/:room', isAuthenticated, (req, res) => {
   res.render('whiteBoard', {user: req.user})
 })
 
-//   app.get('/logout', (req, res) => {
-//     res.render('logout')
-//   })
+app.get('/logout', isAuthenticated, (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.error('Logout error:', err);
+    }
+    // Additional logic here (e.g., clear session data, redirect, etc.)
+    res.redirect('/'); // Redirect to the home page or any other desired location after logout
+  });
+})
 app.get('/room/:room', isAuthenticated, (req, res) => {
   res.render('room', { roomId: req.params.room, user: req.user })
 })
@@ -80,7 +86,7 @@ app.get('/left/:room', isAuthenticated, (req, res) => {
   res.render('logout', { roomId: req.params.room, user: req.user })
 })
 
-app.get('*', (req, res) => {
+app.get('*', isAuthenticated, (req, res) => {
   res.send('<h1>404 not found <h1>');
 })
 
@@ -88,7 +94,7 @@ let connections = [];
 
 io.on('connect', socket => {
   connections.push(socket)
-  console.log(`${socket.id} connected`)
+  // console.log(`${socket.id} connected`)
 
   socket.on('join-room', (roomId, userId) => {
     socket.join(roomId)
