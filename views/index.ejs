@@ -7,8 +7,8 @@
 <body>
   <header id="header">
     <% if (user) { %>
-        <img id="profile-pic" src="<%= user._json.picture %>" alt="Profile Picture">
-        <a href="/logout">Logout</a>
+      <img id="profile-pic" src="<%= user._json.picture %>" alt="Profile Picture">
+      <a class="button logout" href="/logout">Logout</a>
     <% } else { %>
         <a id="login-button" href="/auth/google">Login</a>
     <% } %>
