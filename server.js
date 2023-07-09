@@ -78,12 +78,16 @@ app.get('/logout', isAuthenticated, (req, res) => {
     res.redirect('/'); // Redirect to the home page or any other desired location after logout
   });
 })
-app.get('/room/:room', isAuthenticated, (req, res) => {
+app.get('/room/in/:room', isAuthenticated, (req, res) => {
   res.render('room', { roomId: req.params.room, user: req.user })
 })
 
 app.get('/left/:room', isAuthenticated, (req, res) => {
-  res.render('logout', { roomId: req.params.room, user: req.user })
+  res.render('left', { roomId: req.params.room, user: req.user })
+})
+
+app.get('/room/:room', isAuthenticated, (req, res) => {
+  res.render('waiting', {roomId: req.params.room, user: req.user})
 })
 
 app.get('*', isAuthenticated, (req, res) => {

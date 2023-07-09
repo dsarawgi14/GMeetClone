@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Meet Join Page</title>
+  <!-- <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    
+    .video {
+      position: relative;
+      width: 60%;
+      padding: 20px;
+    }
+    
+    .video video {
+      width: 100%;
+      height: auto;
+    }
+    
+    .controls {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .button {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .button:hover {
+      background-color: #f0f0f0;
+    }
+
+    .button.clicked {
+      background-color: red;
+    }
+
+    .button.clicked:hover {
+      background-color: rgb(170, 0, 0);
+    }
+    
+    .join-button {
+      float: right;
+      margin-right: 20px;
+    }
+  </style> -->
+  <link rel="stylesheet" href="waiting.css">
+</head>
+<body>
+  <div class="container">
+    <!-- <div class="video">
+      <video id="user-video"></video>
+      <div class="controls">
+        <button id="mute-audio" class="button togglebtn">Mute Audio</button>
+        <button id="mute-video" class="button togglebtn">Mute Video</button>
+      </div>
+    </div> -->
+    <div class="video">
+        <div class="video-container">
+          <video id="user-video"></video>
+          <div class="video-overlay" id="overlay">
+            <img class="default-image" src="<%= user._json.picture %>" alt="Default Image">
+          </div>
+        </div>
+        <div class="controls">
+          <button id="mute-audio" class="button togglebtn">Mute Audio</button>
+          <button id="mute-video" class="button togglebtn">Mute Video</button>
+        </div>
+      </div>
+    <form action="/room/in/<%= roomId %>" method="get">
+      <button type="submit" join-button" class="button join-button">Join Meeting</button>
+    </form>
+  </div>
+  <!-- <script>
+    let audiomuted = false;
+    let videomuted = false;
+
+    const buttons = document.querySelectorAll('.togglebtn');
+    buttons.forEach(button => {
+      button.addEventListener('click', function() {
+        if(button.id === "mute-audio") {
+            audiomuted = !audiomuted;
+        } else {
+            videoTrack.enabled = videomuted;
+            videomuted = !videomuted;
+        }
+        this.classList.toggle('clicked');
+      });
+    });
+
+    const myVideo = document.getElementById("user-video");
+    myVideo.muted = true;
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+        myVideo.srcObject = stream;
+        myVideo.addEventListener('loadedmetadata', () => {
+            myVideo.play();
+        })
+        videoTrack = stream.getVideoTracks()[0];
+    });
+
+  </script> -->
+  <script src="waiting.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+   /* CSS styles */
+   /* body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .video {
+    position: relative;
+    width: 60%;
+    padding: 20px;
+  }
+  
+  .video video {
+    width: 100%;
+    height: auto;
+  }
+  
+  .controls {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #f0f0f0;
+  }
+
+  .button.clicked {
+    background-color: red;
+  }
+
+  .button.clicked:hover {
+    background-color: rgb(170, 0, 0);
+  }
+  
+  .join-button {
+    float: right;
+    margin-right: 20px;
+  } */
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .video {
+    position: relative;
+    width: 60%;
+    padding: 20px;
+  }
+  
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  }
+  
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .videomuted{
+    opacity: 1;
+  }
+  
+  .video video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .video .default-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .controls {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #f0f0f0;
+  }
+
+  .button.clicked {
+    background-color: red;
+  }
+
+  .button.clicked:hover {
+    background-color: rgb(170, 0, 0);
+  }
+  
+  .join-button {
+    float: right;
+    margin-right: 20px;
+  }
